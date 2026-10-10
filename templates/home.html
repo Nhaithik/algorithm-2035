@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Algorithm 2035</h1>
+  <p>A smart-city request goes in. The framework <b>models</b> it, <b>chooses</b> a DAA technique from the problem's properties, <b>runs</b> it against the alternative, and <b>explains</b> the decision.</p>
+  <div class="pipeline">
+    <span>Scenario input</span><i>→</i><span>Problem model</span><i>→</i><span>Decision engine</span><i>→</i><span>Execute &amp; compare</span><i>→</i><span>Explanation</span>
+  </div>
+</section>
+<h2>Choose a city problem</h2>
+<div class="cards">
+  {% for g, name, goal, algos in cards %}
+  <a class="card" href="{{ url_for('solve', goal=g) }}">
+    <small>{{ name }}</small>
+    <h3>{{ goal }}</h3>
+    <span class="tag">{{ algos }}</span>
+  </a>
+  {% endfor %}
+</div>
+<p class="note">You never pick an algorithm: you describe the goal and its properties, and the decision engine picks. See the <a href="{{ url_for('adapt') }}">Adaptation demo</a> for the same goal producing different choices.</p>
+{% endblock %}

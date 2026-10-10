@@ -1,0 +1,13 @@
+V,E,density,prim_matrix_ops,prim_heap_ops,kruskal_ops,prim_matrix_ms,prim_heap_ms,kruskal_ms,rule_choice,fewest_ops,fastest_ms,costs_equal
+50,72,0.059,5000,703,474,0.2,0.035,0.024,Kruskal,Kruskal,Kruskal,True
+50,186,0.152,5000,2672,1309,0.201,0.083,0.035,Kruskal,Kruskal,Kruskal,True
+50,669,0.546,5000,12151,5582,0.249,0.301,0.077,Prim (adjacency matrix),Prim (matrix),Kruskal,True
+50,1225,1.0,5000,24339,11256,0.291,0.563,0.149,Prim (adjacency matrix),Prim (matrix),Kruskal,True
+100,191,0.039,20000,2712,1525,0.793,0.096,0.063,Kruskal,Kruskal,Kruskal,True
+100,607,0.123,20000,10850,5382,0.82,0.29,0.136,Kruskal,Kruskal,Kruskal,True
+100,2558,0.517,20000,56493,26150,0.992,1.356,0.32,Prim (adjacency matrix),Prim (matrix),Kruskal,True
+100,4950,1.0,20000,118374,54542,1.084,2.883,0.557,Prim (adjacency matrix),Prim (matrix),Kruskal,True
+200,583,0.029,80000,10452,5332,3.003,0.298,0.158,Kruskal,Kruskal,Kruskal,True
+200,2196,0.11,80000,47411,22954,3.073,1.199,0.39,Kruskal,Kruskal,Kruskal,True
+200,10059,0.505,80000,261644,121776,3.712,6.353,1.296,Prim (adjacency matrix),Prim (matrix),Kruskal,True
+200,19900,1.0,80000,556112,255462,4.402,13.13,2.684,Prim (adjacency matrix),Prim (matrix),Kruskal,True

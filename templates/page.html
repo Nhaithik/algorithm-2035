@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% macro render_block(b) %}
+  {% if b.type == 'kv' %}
+    <div class="panel"><h3>{{ b.title }}</h3><dl>{% for k, v in b["items"] %}<dt>{{ k }}</dt><dd>{{ v }}</dd>{% endfor %}</dl></div>
+  {% elif b.type == 'table' %}
+    <div class="panel"><h3>{{ b.title }}</h3>
+      <div class="scroll"><table>
+        <thead><tr>{% for h in b.headers %}<th>{{ h }}</th>{% endfor %}</tr></thead>
+        <tbody>{% for row in b.rows %}<tr class="{{ 'chosen' if b.highlight is not none and loop.index0 == b.highlight }}">{% for c in row %}<td>{{ c }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+      </table></div>
+      {% if b.note %}<p class="note">{{ b.note }}</p>{% endif %}
+    </div>
+  {% elif b.type == 'text' %}
+    <div class="panel"><h3>{{ b.title }}</h3><p>{{ b.body }}</p></div>
+  {% elif b.type == 'bars' %}
+    {% set mx = (b['values']|max) or 1 %}
+    <div class="panel"><h3>{{ b.title }}</h3>
+      {% for lab in b.labels %}
+      <div class="bar"><span class="lab">{{ lab }}</span><span class="track"><span class="fill" style="width: {{ (b['values'][loop.index0] / mx * 100)|round(1) }}%"></span></span><span class="val">{{ '{:,}'.format(b['values'][loop.index0]) }}</span></div>
+      {% endfor %}
+    </div>
+  {% elif b.type == 'grid' %}
+    <div class="panel"><h3>{{ b.title }}</h3>
+      <div class="board" style="grid-template-columns: repeat({{ b.rows|length }}, 1fr)">
+        {% for row in b.rows %}{% set r = loop.index0 %}{% for cell in row %}<div class="sq {{ 'dark' if (r + loop.index0) % 2 else '' }} {{ 'q' if cell == 'Q' else '' }}">{{ '●' if cell == 'Q' else '' }}</div>{% endfor %}{% endfor %}
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+{% if goal is defined and goal %}
+<p class="sub">{{ mod.module }} · {{ mod.algos }}</p>
+<form method="post" class="panel form">
+  {% for name, label, kind, default, help in mod.fields %}
+  <label>{{ label }}
+    {% if kind == 'textarea' %}<textarea name="{{ name }}" rows="3">{{ values[name] }}</textarea>
+    {% elif kind.startswith('select:') %}<select name="{{ name }}">{% for o in kind[7:].split(',') %}<option value="{{ o }}" {{ 'selected' if values[name] == o }}>{{ o }}</option>{% endfor %}</select>
+    {% else %}<input name="{{ name }}" type="text" value="{{ values[name] }}">{% endif %}
+    <small>{{ help }}</small>
+  </label>
+  {% endfor %}
+  <button type="submit">Run framework</button>
+</form>
+{% endif %}
+
+{% if error %}<div class="panel err"><b>Input problem:</b> {{ error }}</div>{% endif %}
+
+{% if result %}
+  <div class="stage"><span class="n">2</span><h2>Problem model</h2></div>
+  <div class="panel"><dl>
+    <dt>Entities</dt><dd>{{ result.model.entities }}</dd>
+    <dt>Constraints</dt><dd>{{ result.model.constraints }}</dd>
+    <dt>Objective</dt><dd>{{ result.model.objective }}</dd>
+    <dt>Input size parameters</dt><dd>{% for k, v in result.model.size.items() %}{{ k }} = {{ '{:,}'.format(v) }}{{ ', ' if not loop.last }}{% endfor %}</dd>
+  </dl></div>
+
+  <div class="stage"><span class="n">3</span><h2>Decision engine</h2></div>
+  <div class="panel decision">
+    <p class="big">Recognised: <b>{{ result.decision.problem_type }}</b></p>
+    <p class="big">Selected: <b class="pick">{{ result.decision.chosen }}</b></p>
+    <dl>
+      <dt>Rule that fired</dt><dd>{{ result.decision.rule }}</dd>
+      {% for k, v in result.decision.facts.items() %}<dt>{{ k }}</dt><dd>{{ v }}</dd>{% endfor %}
+      {% for r in result.decision.rejected %}<dt>Rejected: {{ r.name }}</dt><dd>{{ r.reason }}</dd>{% endfor %}
+      <dt>Expected complexity</dt><dd>{{ result.decision.complexity }}</dd>
+      <dt>NP-class note</dt><dd>{{ result.decision.np_note }}</dd>
+    </dl>
+  </div>
+
+  <div class="stage"><span class="n">4</span><h2>Execution &amp; comparison</h2></div>
+  {% for b in result.blocks %}{{ render_block(b) }}{% endfor %}
+{% endif %}
+
+{% if blocks %}{% for b in blocks %}{{ render_block(b) }}{% endfor %}{% endif %}
+{% endblock %}

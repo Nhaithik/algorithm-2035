@@ -1,0 +1,13 @@
+n,decrease_per_event,structure,insert_ops,decrease_key_ops,extract_min_ops,total_ops,merge_ops,total_ms,sorted_ok
+1000,0.0,Binomial Heap,6926,0,22570,29496,18,5.637,True
+1000,0.0,Fibonacci Heap,1000,0,19960,20960,1,8.634,True
+1000,1.0,Binomial Heap,6926,232,22750,29908,18,5.799,True
+1000,1.0,Fibonacci Heap,1000,1000,19930,21930,1,8.928,True
+1000,4.0,Binomial Heap,6926,692,22598,30216,18,6.263,True
+1000,4.0,Fibonacci Heap,1000,4000,19870,24870,1,9.626,True
+4000,0.0,Binomial Heap,31722,0,114134,145856,18,26.0,True
+4000,0.0,Fibonacci Heap,4000,0,99790,103790,1,42.851,True
+4000,1.0,Binomial Heap,31722,820,114054,146596,18,26.997,True
+4000,1.0,Fibonacci Heap,4000,4000,99546,107546,1,43.759,True
+4000,4.0,Binomial Heap,31722,2730,114284,148736,18,29.499,True
+4000,4.0,Fibonacci Heap,4000,16000,99614,119614,1,46.578,True

@@ -1,0 +1,7 @@
+structure,n,height,insert_ms,search_ms,search_node_visits,search_comparisons,rebalance_ops,valid
+Red-Black Tree,1000,12,1.956,6.304,46487,46487,583,True
+B-Tree (t=16),1000,3,3.73,12.822,14788,120118,47,True
+Red-Black Tree,5000,15,11.778,38.222,290635,290635,2902,True
+B-Tree (t=16),5000,3,21.134,74.172,73845,760757,230,True
+Red-Black Tree,20000,18,52.384,185.495,1366782,1366782,11591,True
+B-Tree (t=16),20000,4,99.9,348.679,395455,3539749,914,True

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title|default("Algorithm 2035") }} · Algorithm 2035</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <a class="brand" href="{{ url_for('home') }}">Algorithm <b>2035</b></a>
+  <nav>
+    <a href="{{ url_for('home') }}" class="{{ 'on' if active=='home' }}">Modules</a>
+    <a href="{{ url_for('adapt') }}" class="{{ 'on' if active=='adapt' }}">Adaptation demo</a>
+    <a href="{{ url_for('experiments') }}" class="{{ 'on' if active=='experiments' }}">Experiments</a>
+    <a href="{{ url_for('complexity') }}" class="{{ 'on' if active=='complexity' }}">Complexity</a>
+  </nav>
+</header>
+<main>{% block content %}{% endblock %}</main>
+<footer>Adaptive Algorithm Selection Framework for Smart Cities · DAA Assignment 1</footer>
+</body>
+</html>

@@ -1,0 +1,50 @@
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2230;--muted:#667085;--line:#e3e6ee;--accent:#4f46e5;--accent2:#eef0ff;--ok:#0f9d58;--err:#c62828}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1220;--card:#181c2e;--ink:#e8eaf3;--muted:#98a2b3;--line:#2a3050;--accent:#8b87ff;--accent2:#23284a}}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px 28px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.brand{font-size:20px;color:var(--ink);text-decoration:none}.brand b{color:var(--accent)}
+nav a{margin-left:6px;padding:6px 12px;border-radius:8px;color:var(--muted);text-decoration:none}
+nav a:hover,nav a.on{background:var(--accent2);color:var(--accent)}
+main{max-width:1080px;margin:0 auto;padding:26px 20px 60px}
+footer{text-align:center;color:var(--muted);padding:24px;font-size:13px}
+h1{font-size:28px;margin:6px 0 4px}h2{font-size:19px;margin:0}h3{margin:0 0 10px;font-size:16px}
+.sub{color:var(--muted);margin-top:0}
+.hero{background:linear-gradient(135deg,var(--accent2),var(--card));border:1px solid var(--line);border-radius:16px;padding:26px;margin-bottom:26px}
+.hero h1{font-size:34px}
+.pipeline{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.pipeline span{background:var(--card);border:1px solid var(--line);padding:6px 12px;border-radius:999px;font-size:13px}
+.pipeline i{color:var(--muted);font-style:normal}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;text-decoration:none;color:var(--ink);transition:.15s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card small{color:var(--accent);font-weight:600}.card h3{margin:6px 0 10px;font-size:15.5px;font-weight:600}
+.tag{font-size:12px;background:var(--accent2);color:var(--accent);padding:3px 9px;border-radius:999px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin:12px 0}
+.panel.err{border-color:var(--err);color:var(--err)}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+label{display:flex;flex-direction:column;gap:5px;font-weight:600;font-size:14px}
+label small{font-weight:400;color:var(--muted)}
+input,textarea,select{font:inherit;padding:9px 11px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);border-color:transparent}
+button{grid-column:1/-1;justify-self:start;font:inherit;font-weight:600;background:var(--accent);color:#fff;border:0;padding:11px 22px;border-radius:10px;cursor:pointer}
+button:hover{filter:brightness(1.1)}
+.stage{display:flex;align-items:center;gap:10px;margin:26px 0 4px}
+.stage .n{background:var(--accent);color:#fff;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700}
+dl{display:grid;grid-template-columns:minmax(150px,230px) 1fr;gap:6px 16px;margin:0}
+dt{color:var(--muted)}dd{margin:0;overflow-wrap:anywhere}
+.decision .big{font-size:17px;margin:2px 0}.pick{color:var(--ok)}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;white-space:nowrap}
+tr.chosen td{background:var(--accent2);font-weight:600}
+.note{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+.bar{display:grid;grid-template-columns:70px 1fr 110px;gap:10px;align-items:center;margin:5px 0}
+.bar .track{background:var(--bg);border-radius:6px;height:16px;overflow:hidden}
+.bar .fill{display:block;height:100%;background:var(--accent);border-radius:6px}
+.bar .val{font-variant-numeric:tabular-nums;color:var(--muted);text-align:right;font-size:13px}
+.board{display:grid;width:min(100%,440px);border:2px solid var(--ink);border-radius:6px;overflow:hidden}
+.sq{aspect-ratio:1;display:grid;place-items:center;background:var(--bg);font-size:clamp(12px,3vw,26px)}
+.sq.dark{background:var(--line)}.sq.q{color:var(--accent)}
+@media(max-width:640px){dl{grid-template-columns:1fr}header{padding:12px 14px}}
